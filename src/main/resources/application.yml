@@ -1,0 +1,16 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://database-rds-mysql.ca3h1hutrbuh.sa-east-1.rds.amazonaws.com/library_dev?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: admin
+    password: senhadbaws
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
