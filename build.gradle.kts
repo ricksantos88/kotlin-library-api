@@ -35,22 +35,17 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("mysql:mysql-connector-java")
 //	runtimeOnly("com.h2database:h2")
-	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-
-	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.3")
-	implementation("org.modelmapper:modelmapper:3.1.0")
-
-	implementation("io.springfox:springfox-boot-starter:3.0.0")
-	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 
 	implementation("javax.validation:validation-api:2.0.1.Final")
 	testImplementation("org.assertj:assertj-core:3.8.0")
 	implementation("org.springframework.boot:spring-boot-starter-validation:2.7.4")
+
+	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter
+	testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation(kotlin("test"))
 
 
 }
@@ -64,4 +59,17 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+
+	// Filtrar por tags (anotações @Tag no JUnit 5)
+//	filter {
+//		includeTestsMatching("com.example.*")
+//		excludeTestsMatching("com.example.integration.*")
+//	}
+
+	// Relatórios detalhados
+	testLogging {
+		events("PASSED", "FAILED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR")
+		exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+		showStandardStreams = true
+	}
 }
